@@ -17,7 +17,9 @@ namespace DGrid
             InitializeComponent();
             dataGrid = new DGridLib.DGrid();
         }
-
+        public delegate object WriteMessageDelegate();
+        public event WriteMessageDelegate Result;
+        public object res;
         DGridLib.DGrid dataGrid { get; set; }
         object[,] arrRows = new object[,] { {"1", "1", "1", "1", "1", "1" },
                                                 { "2", "2", "2", "2", "2", "2" },
@@ -49,10 +51,14 @@ namespace DGrid
             if (dataGrid == null)
             {
                 dataGrid = new DGridLib.DGrid();
-
+                dataGrid.Save += FillRes;
             }
-            dataGrid.SendInfo
+            dataGrid.Open(arrRows, arrCols, arrVals);
             
+        }
+        public void FillRes(object info)
+        {
+            res = info;
         }
 
         private void button2_Click(object sender, EventArgs e)

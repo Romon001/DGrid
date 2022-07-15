@@ -36,5 +36,10 @@ namespace DGrid
         {
 
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+        }
     }
 }
